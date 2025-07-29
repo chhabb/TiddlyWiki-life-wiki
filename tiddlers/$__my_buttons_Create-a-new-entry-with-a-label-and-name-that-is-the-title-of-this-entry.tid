@@ -1,0 +1,33 @@
+created: 20250718084322920
+list-after: $:/core/ui/Buttons/edit
+modified: 20250720172822220
+tags: $:/tags/ViewToolbar
+title: $:/my/buttons/Create-a-new-entry-with-a-label-and-name-that-is-the-title-of-this-entry
+type: text/vnd.tiddlywiki
+
+\define newHereButtonTags()
+[[$(currentTiddler)$]]
+\end
+
+\define newHereButton()
+<$button class=<<tv-config-toolbar-class>> tooltip="创建一个以当前条目为父的子条目，且命名为“父条目/子条目”">
+  <$set name="baseTitle" value=<<currentTiddler>>>
+    <$set name="newTitle" value="""$(currentTiddler)$/子条目""" >
+      <$action-sendmessage
+        $message="tm-new-tiddler"
+        title=<<newTitle>>
+        tags=<<newHereButtonTags>> />
+    </$set>
+  </$set>
+
+  <$list filter="[<tv-config-toolbar-icons>match[yes]]">
+    {{$:/core/images/new-button}}
+  </$list>
+
+  <$list filter="[<tv-config-toolbar-text>match[yes]]">
+    <span class="tc-btn-text">创建子条目</span>
+  </$list>
+</$button>
+\end
+
+<<newHereButton>>

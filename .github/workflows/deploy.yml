@@ -1,0 +1,32 @@
+name: Deploy TiddlyWiki to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 主分支名，根据你实际分支调整
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'  # 适当版本
+
+    - name: Install TiddlyWiki
+      run: npm install -g tiddlywiki
+
+    - name: Build TiddlyWiki static site
+      run: tiddlywiki --build index
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./output  # 对应tiddlywiki构建输出目录
+        publish_branch: gh-pages

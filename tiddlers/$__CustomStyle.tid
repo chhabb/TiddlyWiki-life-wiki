@@ -1,0 +1,29 @@
+created: 20250718162646461
+modified: 20250727162856455
+padding-right: 25px
+tags: $:/tags/Stylesheet
+title: $:/CustomStyle
+type: text/vnd.tiddlywiki
+
+/* 隐藏站点标题和副标题 */
+.tc-reveal .tc-site-title,
+.tc-reveal .tc-site-subtitle {
+  display: none;
+}
+.tc-sidebar-scrollable {
+  padding-top: 20px !important;
+}
+/* 侧边栏 */
+.tc-sidebar-scrollable {
+	background-color: #f4f4f4;
+	opacity:.96;
+}
+/* 内容区 */
+.tc-story-river {
+	padding-right:42px;
+	opacity:.96;
+}
+
+.tc-tiddler-frame {
+  scroll-margin-top: 60px; /* 根据需要调整数值，比如 60px */
+}
